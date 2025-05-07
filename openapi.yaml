@@ -24,32 +24,17 @@ components:
     Post:
       type: object
       required:
-        - id
-        - title
-        - description
+        - postid
+        - thumbnail
         - price
-        - location
-        - images
       properties:
-        id:
+        postid:
           type: string
           description: The unique identifier for the post
-        title:
+        thumbnail:
           type: string
-          description: The title of the post
-        description:
-          type: string
-          description: A detailed description of the post
+          description: The URL of the thumbnail image
         price:
           type: number
           format: float
           description: The price of the post
-        location:
-          type: string
-          description: The location of the post
-        images:
-          type: array
-          items:
-            type: string
-            format: uri
-            description: URL of the image associated with the post
