@@ -4,4 +4,52 @@ info:
   title: Campus Cribs
   description: This is a Campus Cribs contract implementation
 paths:
-
+  /posts:
+    get:
+      summary: Get all posts information
+      operationId: getPosts
+      tags:
+        - posts
+      responses:
+        "200":
+          description: A list of posts
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Post"
+components:
+  schemas:
+    Post:
+      type: object
+      required:
+        - id
+        - title
+        - description
+        - price
+        - location
+        - images
+      properties:
+        id:
+          type: string
+          description: The unique identifier for the post
+        title:
+          type: string
+          description: The title of the post
+        description:
+          type: string
+          description: A detailed description of the post
+        price:
+          type: number
+          format: float
+          description: The price of the post
+        location:
+          type: string
+          description: The location of the post
+        images:
+          type: array
+          items:
+            type: string
+            format: uri
+            description: URL of the image associated with the post
