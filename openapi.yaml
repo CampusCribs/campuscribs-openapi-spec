@@ -10,6 +10,18 @@ paths:
       operationId: getPosts
       tags:
         - posts
+      parameters:
+        - name: tags
+          in: query
+          description: Tags to filter posts
+          required: false
+          explode: true
+          schema:
+            type: array
+            items:
+              $ref: "#/components/schemas/Post
+        - $ref: "#/components/parameters/limit"
+        - $ref: "#/components/parameters/offset"
       responses:
         "200":
           description: A list of posts
@@ -38,3 +50,6 @@ components:
           type: number
           format: float
           description: The price of the post
+        location:
+          type: string
+          description: The location of the post
