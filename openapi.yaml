@@ -55,6 +55,26 @@ paths:
                 type: object
                 items:
                   $ref: "#/components/schemas/SearchResponse"
+  /profile:
+    get:
+      summary: Get single user
+      operationId: getUser
+      tags:
+        - user
+      parameters:
+        - name: username
+          in: query
+          description: username to find user
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: A user object
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
 components:
   schemas:
     SearchResults:
@@ -67,8 +87,8 @@ components:
         users:
           type: array
           items:
-            $ref: "#/components/schemas/User"
-    User:
+            $ref: "#/components/schemas/SearchUser"
+    SearchUser:
       type: object
       properties:
         id:
@@ -79,8 +99,60 @@ components:
           description: The username of the user
         thumbnail:
           type: string
-          format: email
           description: Thumbnail of the user
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier for the user
+        username:
+          type: string
+          description: The username of the user
+        email:
+          type: string
+          description: The email of the user
+        phone:
+          type: string
+          description: The phone number of the user
+        firstName:
+          type: string
+          description: The first name of the user
+        lastName:
+          type: string
+          description: The last name of the user
+        bio:
+          type: string
+          description: The bio of the user
+        thumbnail:
+          type: string
+          description: Thumbnail of the user
+        post:
+          type: object
+          $ref: "#/components/schemas/UserPost"
+          description: The post of the user
+    UserPost:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier for the post
+        thumbnail:
+          type: string
+          description: The URL of the thumbnail image
+        title:
+          type: string
+          description: The title of the post
+        roommates:
+          type: string
+          description: The number of roommates
+        description:
+          type: string
+          description: The description of the post
+        price:
+          type: number
+          format: float
+          description: The price of the post
     Post:
       type: object
       required:
