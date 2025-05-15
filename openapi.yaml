@@ -103,6 +103,9 @@ components:
           type: number
           format: float
           description: The price of the post
+        title:
+          type: string
+          description: The title of the post
     User:
       type: object
       properties:
