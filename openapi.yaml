@@ -33,19 +33,17 @@ paths:
                 items:
                   $ref: "#/components/schemas/Post"
   /search:
-    get:
+    post:
       summary: Search for anything
       operationId: search
       tags:
         - search
-      parameters:
-        - name: q
-          in: query
-          description: The search query
-          required: true
-          schema:
-            type: string
-        - $ref: "#/components/parameters/limit"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SearchRequest"
       responses:
         "200":
           description: A search result
@@ -57,7 +55,20 @@ paths:
                   $ref: "#/components/schemas/SearchResult"
 components:
   schemas:
-    # Search
+    SearchRequest:
+      type: object
+      properties:
+        query:
+          type: string
+          description: The search query
+        tags:
+          type: array
+          description: Tags to filter posts
+          required: false
+          items:
+            type: string
+            description: A tag
+            required: false
     SearchResult:
       type: object
       properties:
@@ -94,7 +105,6 @@ components:
           type: number
           format: float
           description: The price of the post
-    # User
     User:
       type: object
       properties:
