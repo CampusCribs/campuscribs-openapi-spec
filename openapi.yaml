@@ -50,9 +50,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                items:
-                  $ref: "#/components/schemas/SearchResult"
+                $ref: "#/components/schemas/SearchResult"
 components:
   schemas:
     SearchRequest:
