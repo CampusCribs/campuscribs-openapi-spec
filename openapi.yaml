@@ -4,154 +4,77 @@ info:
   title: CampusCribs
   description: CampusCribs API Implementation Specification
 paths:
-  /posts:
+  /users/me:
     get:
-      summary: Get all posts
-      operationId: getPosts
       tags:
-        - posts
-      parameters:
-        - name: tags
-          in: query
-          description: Tags to filter posts
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-          style: form
-          explode: true
-        - $ref: "#/components/parameters/limit"
-        - $ref: "#/components/parameters/page"
+        - User
+      summary: Get current user
       responses:
         "200":
-          description: An array of posts
+          description: OK
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/Post"
-  /search:
-    post:
-      summary: Search for anything
-      operationId: search
-      tags:
-        - search
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/SearchRequest"
-      responses:
-        "200":
-          description: A search result
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/SearchResult"
+                $ref: "#/components/schemas/User"
 components:
   schemas:
-    SearchRequest:
+    UserAnonymous:
       type: object
-      properties:
-        query:
-          type: string
-          description: The search query
-        tags:
-          type: array
-          description: Tags to filter posts
-          required: false
-          items:
-            type: string
-            description: A tag
-            required: false
-    SearchResult:
-      type: object
-      properties:
-        posts:
-          type: array
-          items:
-            $ref: "#/components/schemas/SearchPost"
-        users:
-          type: array
-          items:
-            $ref: "#/components/schemas/SearchUser"
-    SearchUser:
-      type: object
+      required:
+        - id
+        - firstName
+        - lastName
+        - username
+        - createdAt
       properties:
         id:
           type: string
-          description: The unique identifier for the user
-        username:
-          type: string
-          description: The username of the user
-        thumbnail:
-          type: string
-          description: Thumbnail of the user
-    SearchPost:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The unique identifier for the post
-        thumbnail:
-          type: string
-          description: The URL of the thumbnail image
-        price:
-          type: number
-          format: float
-          description: The price of the post
-        title:
-          type: string
-          description: The title of the post
-    User:
-      type: object
-      properties:
-        username:
-          type: string
-          description: The username of the user
-        email:
-          type: string
-          description: The email of the user
-        phone:
-          type: string
-          description: The phone number of the user
+          format: uuid
         firstName:
           type: string
-          description: The first name of the user
         lastName:
           type: string
-          description: The last name of the user
+        username:
+          type: string
         bio:
           type: string
-          description: The bio of the user
-        thumbnail:
+        thumbnailMediaId:
           type: string
-          description: Thumbnail of the user
-    Post:
+          format: uuid
+        createdAt:
+          type: string
+          format: date-time
+    User:
       type: object
+      required:
+        - id
+        - firstName
+        - lastName
+        - username
+        - createdAt
       properties:
         id:
           type: string
-          description: The unique identifier for the post
-        thumbnail:
+          format: uuid
+        firstName:
           type: string
-          description: The URL of the thumbnail image
-        title:
+        lastName:
           type: string
-          description: The title of the post
-        roommates:
+        username:
           type: string
-          description: The number of roommates
-        description:
+        bio:
           type: string
-          description: The description of the post
-        price:
-          type: number
-          format: float
-          description: The price of the post
+        thumbnailMediaId:
+          type: string
+          format: uuid
+        createdAt:
+          type: string
+          format: date-time
+        email:
+          type: string
+          format: email
+        phone:
+          type: string
   parameters:
     limit:
       description: The limit of a paginated request
