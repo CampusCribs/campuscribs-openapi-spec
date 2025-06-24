@@ -16,94 +16,33 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/User"
-/tags:
-  get:
-    tags:
-      - Tag
-    summary: Get all tags
-    responses:
-      "200":
-        description: OK
-        content:
-          application/json:
-            schema:
-              type: array
-              items:
-                type: object
-                properties:
-                  id:
-                    type: string
-                  name:
-                    type: string
-                  tagCategoryId:
-                    type: string
-/curated:
-  get:
-    tags:
-      - Curated
-    summary: Get curated items
-    parameters:
-      - in: query
-        name: tags
-        description: Filter by tags
-        required: false
-        schema:
-          type: array
-          items:
-            type: string
-          style: form
-          explode: true
-    responses:
-      "200":
-        description: OK
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                content:
-                  type: array
-                  items:
-                    type: object
-                    properties:
-                      id:
-                        type: string
-                      mediaId:
-                        type: string
-                      price:
-                        type: number
-                pageable:
-                  type: object
-                totalPages:
-                  type: integer
-                totalElements:
-                  type: integer
-                size:
-                  type: integer
-                number:
-                  type: integer
-                sort:
-                  type: object
-                first:
-                  type: boolean
-                last:
-                  type: boolean
-                numberOfElements:
-                  type: integer
-                empty:
-                  type: boolean
-  /search:
+  /tags:
     get:
       tags:
-        - Search
-      summary: Search for items
+        - Tag
+      summary: Get all tags
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    name:
+                      type: string
+                    tagCategoryId:
+                      type: string
+  /curated:
+    get:
+      tags:
+        - Curated
+      summary: Get curated items
       parameters:
-        - in: query
-          name: query
-          description: Search query
-          required: true
-          schema:
-            type: string
         - in: query
           name: tags
           description: Filter by tags
@@ -133,6 +72,26 @@ paths:
                           type: string
                         price:
                           type: number
+                  pageable:
+                    type: object
+                  totalPages:
+                    type: integer
+                  totalElements:
+                    type: integer
+                  size:
+                    type: integer
+                  number:
+                    type: integer
+                  sort:
+                    type: object
+                  first:
+                    type: boolean
+                  last:
+                    type: boolean
+                  numberOfElements:
+                    type: integer
+                  empty:
+                    type: boolean
   /search:
     get:
       summary: Search for posts and users
