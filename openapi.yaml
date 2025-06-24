@@ -37,6 +37,140 @@ paths:
                     type: string
                   tagCategoryId:
                     type: string
+/curated:
+  get:
+    tags:
+      - Curated
+    summary: Get curated items
+    parameters:
+      - in: query
+        name: tags
+        description: Filter by tags
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+          style: form
+          explode: true
+    responses:
+      "200":
+        description: OK
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                content:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                      mediaId:
+                        type: string
+                      price:
+                        type: number
+                pageable:
+                  type: object
+                totalPages:
+                  type: integer
+                totalElements:
+                  type: integer
+                size:
+                  type: integer
+                number:
+                  type: integer
+                sort:
+                  type: object
+                first:
+                  type: boolean
+                last:
+                  type: boolean
+                numberOfElements:
+                  type: integer
+                empty:
+                  type: boolean
+  /search:
+    get:
+      tags:
+        - Search
+      summary: Search for items
+      parameters:
+        - in: query
+          name: query
+          description: Search query
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: tags
+          description: Filter by tags
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+            style: form
+            explode: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  content:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        mediaId:
+                          type: string
+                        price:
+                          type: number
+                          /search:
+  get:
+    summary: Search for posts and users
+    parameters:
+      - in: query
+        name: query
+        required: true
+        description: Search term
+        schema:
+          type: string
+    responses:
+      "200":
+        description: Successful search
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                posts:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      title:
+                        type: string
+                      thumbnail:
+                        type: string
+                        nullable: true
+                users:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      username:
+                        type: string
+                      thumbnail:
+                        type: string
+                        nullable: true
 
 components:
   schemas:
