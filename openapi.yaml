@@ -16,6 +16,28 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/User"
+/tags:
+  get:
+    tags:
+      - Tag
+    summary: Get all tags
+    responses:
+      "200":
+        description: OK
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  name:
+                    type: string
+                  tagCategoryId:
+                    type: string
+
 components:
   schemas:
     UserAnonymous:
