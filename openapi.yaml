@@ -133,45 +133,44 @@ paths:
                           type: string
                         price:
                           type: number
-                          /search:
-  get:
-    summary: Search for posts and users
-    parameters:
-      - in: query
-        name: query
-        required: true
-        description: Search term
-        schema:
-          type: string
-    responses:
-      "200":
-        description: Successful search
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                posts:
-                  type: array
-                  items:
-                    type: object
-                    properties:
-                      title:
-                        type: string
-                      thumbnail:
-                        type: string
-                        nullable: true
-                users:
-                  type: array
-                  items:
-                    type: object
-                    properties:
-                      username:
-                        type: string
-                      thumbnail:
-                        type: string
-                        nullable: true
-
+  /search:
+    get:
+      summary: Search for posts and users
+      parameters:
+        - in: query
+          name: query
+          required: true
+          description: Search term
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful search
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  posts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        title:
+                          type: string
+                        thumbnail:
+                          type: string
+                          nullable: true
+                  users:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        username:
+                          type: string
+                        thumbnail:
+                          type: string
+                          nullable: true
 components:
   schemas:
     UserAnonymous:
